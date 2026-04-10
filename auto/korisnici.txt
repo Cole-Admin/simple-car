@@ -8,4 +8,4 @@ nikola:admin2024:20000
 sofija:sofija321:20000
 luka:luka2020:20000
 marija:marija999:20000
-cole:cole1234:0
+cole:cole1234:1500000

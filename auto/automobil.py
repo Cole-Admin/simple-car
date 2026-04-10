@@ -1,4 +1,6 @@
 import os
+# UVEZENI MODUL
+import biblioteka as bib
 
 
 class Automobil:
@@ -48,6 +50,34 @@ class Automobil:
     @property
     def id(self):
         return self.__id
+    
+    @marka.setter
+    def marka(self, nova_vrednost):
+        self.__marka = nova_vrednost
+    
+    @model.setter
+    def model(self, nova_vrednost):
+        self.__model = nova_vrednost
+    
+    @godiste.setter
+    def godiste(self, nova_vrednost):
+        self.__model = nova_vrednost
+        
+    @snaga_motora.setter
+    def snaga_motora(self, nova_vrednost):
+        self.__snaga_motora = nova_vrednost
+    
+    @max_brzina.setter
+    def max_brzina(self, nova_vrednost):
+        self.__max_brzina = nova_vrednost
+    
+    @cena.setter
+    def cena(self, nova_vrednost):
+        self.__cena = nova_vrednost
+    
+    @id.setter
+    def id(self, nova_vrednost):
+        self.__id = nova_vrednost
 
     def ucitaj_automobile_iz_fajla(self, naziv_fajla):
         automobili = []
@@ -122,10 +152,10 @@ class Automobil:
         automobili = self.ucitaj_automobile_iz_fajla(self.naziv_fajla)
 
         rezultat = []
-
-        for auto in automobili:
-            if auto.godiste >= godiste:
-                rezultat.append(auto)
+        if godiste > 0:
+            for auto in automobili:
+                if auto.godiste >= godiste:
+                    rezultat.append(auto)
 
         return rezultat
 
@@ -133,10 +163,10 @@ class Automobil:
         automobili = self.ucitaj_automobile_iz_fajla(self.naziv_fajla)
 
         rezultat = []
-
-        for auto in automobili:
-            if auto.snaga_motora >= snaga:
-                rezultat.append(auto)
+        if snaga  > 0:
+            for auto in automobili:
+                if auto.snaga_motora >= snaga:
+                    rezultat.append(auto)
 
         return rezultat
 
@@ -145,9 +175,10 @@ class Automobil:
 
         rezultat = []
 
-        for auto in automobili:
-            if auto.max_brzina >= brzina:
-                rezultat.append(auto)
+        if brzina > 0:
+            for auto in automobili:
+                if auto.max_brzina >= brzina:
+                    rezultat.append(auto)
 
         return rezultat
 
@@ -156,9 +187,10 @@ class Automobil:
 
         rezultat = []
 
-        for auto in automobili:
-            if auto.cena >= cena:
-                rezultat.append(auto)
+        if cena > 0:
+            for auto in automobili:
+                if auto.cena >= cena:
+                    rezultat.append(auto)
 
         return rezultat
 
@@ -186,11 +218,14 @@ class KupovinaAutomobila:
     def auto(self):
         return self.__auto
 
+    @auto.setter
+    def auto(self, nova_vrednot):
+        self.__auto = nova_vrednot
+        
     def __str__(self):
         rez = "Kupovina automobila:\n"
         rez += str(self.__auto)
         return rez
-
 
 class Korisnik:
     __ime: str
@@ -216,6 +251,14 @@ class Korisnik:
     def balans(self):
         return self.__balans
 
+    @ime.setter
+    def ime(self, nova_vrednost):
+        self.__ime = nova_vrednost
+    
+    @sifra.setter
+    def sifra(self, nova_vrednost):
+        self.__sifra = nova_vrednost
+        
     @balans.setter
     def balans(self, value):
         self.__balans = value
@@ -285,10 +328,8 @@ class Korisnik:
             fajl.write(linija)
 
         fajl.close()
-
-
+        
 a1 = Automobil("Toyota", "Camry", 2020, 203, 220, 22000, 1)
-
 
 def glavni_meni(korisnik):
     izbor = -1
@@ -297,6 +338,7 @@ def glavni_meni(korisnik):
         print("\n=== GLAVNI MENI ===")
         print("1) Automobili")
         print("2) Kupovina")
+        print("3) Cena registracije")
         print("0) Izlaz")
 
         izbor = int(input("Izbor: "))
@@ -373,6 +415,8 @@ def glavni_meni(korisnik):
                         print(auto)
 
         elif izbor == 2:
+            
+            
             budzet = korisnik.balans
             automobili = a1.ucitaj_automobile_iz_fajla(a1.naziv_fajla)
 
@@ -401,8 +445,10 @@ def glavni_meni(korisnik):
                 a1.obrisi_automobil_iz_fajla(idk, a1.naziv_fajla)
 
                 print(kupljen)
-
-
+        elif izbor == 3:
+            snaga = int(input("\nUnesite koliko konjskih snaga ima Vas auto: "))
+            print(f"Cena je priblizno: {bib.racunanje_registracije(snaga)}")
+            
 while True:
     print("\n1) Login")
     print("2) Register")
@@ -433,3 +479,12 @@ while True:
         balans = int(input("Balans: "))
 
         k1.register(ime, sifra, balans)
+
+
+"""
+def unos():
+    a = int(input("Za koliko si sipao: "))
+    b = int(input("Cena goriva: "))
+    print(bib.prosecna_potrosnja(a, b))   
+    pass
+"""
