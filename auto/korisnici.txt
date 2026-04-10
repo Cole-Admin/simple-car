@@ -1,0 +1,11 @@
+marko:12345:20000
+ana:abcd:20000
+jovan:qwerty:20000
+ivana:pass123:20000
+petar:98765:20000
+milica:hello123:20000
+nikola:admin2024:20000
+sofija:sofija321:20000
+luka:luka2020:20000
+marija:marija999:20000
+cole:cole1234:0
